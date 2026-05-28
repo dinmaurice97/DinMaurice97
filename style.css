@@ -1,0 +1,26 @@
+body{
+    margin:0;
+  
+    height:100vh;
+  
+    display:flex;
+    justify-content:center;
+    align-items:center;
+  
+    background:black;
+    color:white;
+  
+    font-family:sans-serif;
+  }
+  
+  .card{
+    padding:40px;
+  
+    border-radius:20px;
+  
+    background:rgba(255,255,255,0.1);
+  
+    backdrop-filter:blur(10px);
+  
+    border:1px solid rgba(255,255,255,0.1);
+  }
