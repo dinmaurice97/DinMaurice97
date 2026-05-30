@@ -1,342 +1,274 @@
-<!DOCTYPE html>
-<html lang="de">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>DinMaurice</title>
-
-    <!-- Font Awesome -->
-    <script src="https://kit.fontawesome.com/a2e0e6ad65.js" crossorigin="anonymous"></script>
-
-    <style>
-
-        *{
-            margin:0;
-            padding:0;
-            box-sizing:border-box;
-            font-family:Arial, Helvetica, sans-serif;
-        }
-
-        body{
-            height:100vh;
-            display:flex;
-            justify-content:center;
-            align-items:center;
-            overflow:hidden;
-            position:relative;
-
-            background: linear-gradient(
-                -45deg,
-                #000000,
-                #120018,
-                #250038,
-                #4b0082,
-                #1a001f,
-                #000000
-            );
-
-            background-size:400% 400%;
-
-            /* Langsamere Animation */
-            animation:gradientFlow 25s ease infinite;
-        }
-
-        /* Hintergrund Wellen */
-        @keyframes gradientFlow{
-            0%{
-                background-position:0% 50%;
-            }
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
 
-            50%{
-                background-position:100% 50%;
-            }
+body{
+  min-height:100vh;
 
-            100%{
-                background-position:0% 50%;
-            }
-        }
+  display:flex;
+  justify-content:center;
+  align-items:center;
 
-        /* Glow Layer */
-        body::before{
-            content:"";
-            position:absolute;
+  font-family:Arial, Helvetica, sans-serif;
 
-            width:100%;
-            height:100%;
+  background:linear-gradient(
+      135deg,
+      #0a0014,
+      #22003d,
+      #4b0082,
+      #22003d,
+      #0a0014
+  );
 
-            background:
-                radial-gradient(circle at 20% 30%, rgba(128,0,255,0.25), transparent 30%),
-                radial-gradient(circle at 80% 70%, rgba(180,0,255,0.2), transparent 35%),
-                radial-gradient(circle at 50% 50%, rgba(90,0,180,0.15), transparent 40%);
+  background-size:400% 400%;
 
-            filter:blur(100px);
+  animation:gradientMove 20s ease infinite;
 
-            animation:pulse 15s ease-in-out infinite;
+  color:white;
+}
 
-            z-index:-2;
-        }
+@keyframes gradientMove{
+  0%{
+      background-position:0% 50%;
+  }
 
-        @keyframes pulse{
-            0%{
-                transform:scale(1);
-            }
+  50%{
+      background-position:100% 50%;
+  }
 
-            50%{
-                transform:scale(1.08);
-            }
+  100%{
+      background-position:0% 50%;
+  }
+}
 
-            100%{
-                transform:scale(1);
-            }
-        }
+.card{
+  width:430px;
 
-        /* Kleine Partikel */
-        .particles{
-            position:absolute;
-            width:100%;
-            height:100%;
-            overflow:hidden;
-            z-index:-1;
-        }
+  padding:40px;
 
-        .particles span{
-            position:absolute;
-            display:block;
+  border-radius:30px;
 
-            width:4px;
-            height:4px;
+  background:rgba(255,255,255,0.06);
 
-            background:rgba(255,255,255,0.5);
+  backdrop-filter:blur(15px);
 
-            border-radius:50%;
+  border:1px solid rgba(255,255,255,0.08);
 
-            animation:float 15s linear infinite;
-        }
+  text-align:center;
 
-        @keyframes float{
-            0%{
-                transform:translateY(100vh) scale(0);
-                opacity:0;
-            }
+  box-shadow:
+      0 0 30px rgba(0,0,0,0.4),
+      0 0 60px rgba(128,0,255,0.15);
+}
 
-            10%{
-                opacity:1;
-            }
+.avatar{
+  width:120px;
+  height:120px;
 
-            100%{
-                transform:translateY(-10vh) scale(1);
-                opacity:0;
-            }
-        }
+  border-radius:50%;
 
-        /* Card */
-        .card{
-            width:420px;
+  object-fit:cover;
 
-            background:rgba(20,20,20,0.55);
+  border:4px solid rgba(255,255,255,0.12);
 
-            backdrop-filter:blur(15px);
+  margin-bottom:20px;
 
-            border:1px solid rgba(255,255,255,0.08);
+  transition:0.3s;
+}
 
-            border-radius:30px;
+.avatar:hover{
+  transform:scale(1.05);
+}
 
-            padding:40px;
+h1{
+  font-size:58px;
 
-            text-align:center;
+  margin-bottom:10px;
+}
 
-            color:white;
+.bio{
+  opacity:0.85;
 
-            box-shadow:0 0 30px rgba(0,0,0,0.5);
+  font-size:17px;
 
-            z-index:2;
-        }
+  margin-bottom:35px;
 
-        .avatar{
-            width:120px;
-            height:120px;
+  line-height:1.4;
+}
 
-            border-radius:50%;
+/* SOCIAL LINKS */
 
-            object-fit:cover;
+.links{
+  display:flex;
 
-            border:4px solid rgba(255,255,255,0.12);
+  justify-content:center;
 
-            margin-bottom:20px;
-        }
+  gap:20px;
 
-        h1{
-            font-size:42px;
-            margin-bottom:10px;
-        }
+  margin-bottom:40px;
+}
 
-        .bio{
-            color:#cfcfcf;
-            font-size:18px;
-            margin-bottom:35px;
-        }
+.links a{
+  width:75px;
+  height:75px;
 
-        /* Social Links */
-        .links{
-            display:flex;
-            justify-content:center;
-            gap:25px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
 
-            margin-bottom:40px;
-        }
+  border-radius:20px;
 
-        .links a{
-            width:70px;
-            height:70px;
+  background:rgba(255,255,255,0.06);
 
-            display:flex;
-            justify-content:center;
-            align-items:center;
+  border:1px solid rgba(255,255,255,0.08);
 
-            border-radius:20px;
+  transition:0.3s;
 
-            background:rgba(255,255,255,0.05);
+  backdrop-filter:blur(10px);
+}
 
-            transition:0.3s;
+.links a:hover{
+  transform:
+      translateY(-5px)
+      scale(1.05);
 
-            text-decoration:none;
-        }
+  background:rgba(128,0,255,0.15);
 
-        .links a:hover{
-            transform:translateY(-5px) scale(1.08);
+  box-shadow:
+      0 0 25px rgba(128,0,255,0.4),
+      0 0 50px rgba(128,0,255,0.15);
+}
 
-            background:rgba(255,255,255,0.12);
+.icon{
+  width:42px;
+  height:42px;
 
-            box-shadow:0 0 20px rgba(128,0,255,0.45);
-        }
+  object-fit:contain;
 
-        .links i{
-            font-size:34px;
-            color:white;
-        }
+  transition:0.3s;
+}
 
-        .about h2{
-            font-size:34px;
-            margin-bottom:20px;
-        }
+.links a:hover .icon{
+  transform:scale(1.1);
+}
 
-        .about p{
-            color:#d0d0d0;
-            line-height:1.7;
-            font-size:17px;
-        }
+/* ABOUT */
 
-    </style>
+.about{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
 
-</head>
+.about h2{
+  font-size:30px;
 
-<body>
+  margin-bottom:20px;
+}
 
-    <!-- Particles -->
-    <div class="particles">
+.about p{
+  opacity:0.85;
 
-        <span style="left:5%; animation-delay:0s;"></span>
-        <span style="left:15%; animation-delay:2s;"></span>
-        <span style="left:25%; animation-delay:4s;"></span>
-        <span style="left:35%; animation-delay:1s;"></span>
-        <span style="left:45%; animation-delay:6s;"></span>
-        <span style="left:55%; animation-delay:3s;"></span>
-        <span style="left:65%; animation-delay:5s;"></span>
-        <span style="left:75%; animation-delay:7s;"></span>
-        <span style="left:85%; animation-delay:2s;"></span>
-        <span style="left:95%; animation-delay:4s;"></span>
+  line-height:1.8;
 
-    </div>
+  font-size:16px;
+}
 
-    <!-- Card -->
-    <div class="card">
+/* MUSIC BUTTON */
 
-        <!-- Avatar -->
-        <img src="avatar.png" alt="Avatar" class="avatar">
+.music-btn{
 
-        <!-- Name -->
-        <h1>DinMaurice</h1>
+  margin-top:25px;
 
-        <!-- Bio -->
-        <p class="bio">
-            Gamer • Content Creator • Staff Member of many Servers
-        </p>
+  width:24px;
+  height:24px;
 
-      <!-- Social Links -->
-<div class="links">
+  border:none;
 
-  <!-- YouTube -->
-  <a href="https://www.youtube.com/@dinmaurice" target="_blank">
-      <img src="youtube.svg" class="icon">
-  </a>
+  border-radius:18px;
 
-  <!-- Twitch -->
-  <a href="https://www.twitch.tv/dinmaurice97" target="_blank">
-      <img src="twitch.svg" class="icon">
-  </a>
+  background:rgba(255,255,255,0.06);
 
-  <!-- Discord -->
-  <a href="https://discord.gg/g5YhPvzxca" target="_blank">
-      <img src="discord.svg" class="icon">
-  </a>
+  border:1px solid rgba(255,255,255,0.08);
 
-</div>
-        <!-- About -->
-        <div class="about">
+  color:white;
 
-          <h2>About Me</h2>
-      
-          <p>
-              Hey, I am DinMaurice but you can also call me "Din" or "Maurice".
-              I do gaming content, I’m 15 years old and I love playing Minecraft
-              with other people. I’m also streaming and working on cool projects.
-          </p>
-      
-          <!-- MUSIC BUTTON -->
-          <button class="music-btn" onclick="toggleMusic()">
-              ▶ Play Music
-          </button>
-      
-      </div>
+  font-size:18px;
+  font-weight:600;
 
-    </div>
+  cursor:pointer;
 
-</body>
-<audio id="bg-music" loop>
-  <source src="song.mp3" type="audio/mpeg">
-</audio>
+  transition:0.3s;
 
+  backdrop-filter:blur(10px);
 
-  <script>
+  box-shadow:
+      0 0 15px rgba(0,0,0,0.25),
+      inset 0 0 10px rgba(255,255,255,0.03);
+}
 
-    let playing = false;
-    
-    function toggleMusic(){
-    
-        const music = document.getElementById("bg-music");
-        const button = document.querySelector(".music-btn");
-    
-        if(!playing){
-    
-            music.play();
-    
-            button.innerHTML = "⏸ Pause Music";
-    
-            playing = true;
-    
-        } else {
-    
-            music.pause();
-    
-            button.innerHTML = "▶ Play Music";
-    
-            playing = false;
-        }
-    }
-    
-    </script>
-</button>
+.music-btn:hover{
 
-</html>
+  transform:
+      translateY(-4px)
+      scale(1.03);
+
+  background:rgba(128,0,255,0.18);
+
+  box-shadow:
+      0 0 25px rgba(128,0,255,0.5),
+      0 0 50px rgba(128,0,255,0.2);
+}
+
+.music-btn:active{
+  transform:scale(0.98);
+}
+/* MUSIC PLAYER */
+
+.music-container{
+  display:flex;
+  justify-content:center;
+  margin-top:30px;
+}
+
+.music-btn{
+  width:24px;
+  height:24px;
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
+  border-radius:20px;
+
+  background:rgba(255,255,255,0.06);
+
+  border:1px solid rgba(255,255,255,0.08);
+
+  cursor:pointer;
+
+  transition:0.3s;
+
+  backdrop-filter:blur(10px);
+
+  box-shadow:
+      0 0 15px rgba(0,0,0,0.25),
+      inset 0 0 10px rgba(255,255,255,0.03);
+}
+
+
+.music-btn:hover{
+  transform:translateY(-5px) scale(1.05);
+
+  background:rgba(128,0,255,0.18);
+
+  box-shadow:
+      0 0 25px rgba(128,0,255,0.5),
+      0 0 50px rgba(128,0,255,0.2);
+}
+.icon.src{
+  width:24px;
+  height:24px;
+}
